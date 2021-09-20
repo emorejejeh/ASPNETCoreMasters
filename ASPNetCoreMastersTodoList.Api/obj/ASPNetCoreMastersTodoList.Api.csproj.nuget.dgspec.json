@@ -1,0 +1,149 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Masters\\.Net Core\\Homework\\ASPNetCoreMasters\\ASPNetCoreMastersTodoList.Api\\ASPNetCoreMastersTodoList.Api.csproj": {}
+  },
+  "projects": {
+    "C:\\Masters\\.Net Core\\Homework\\ASPNetCoreMasters\\ASPNetCoreMastersTodoList.Api\\ASPNetCoreMastersTodoList.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Masters\\.Net Core\\Homework\\ASPNetCoreMasters\\ASPNetCoreMastersTodoList.Api\\ASPNetCoreMastersTodoList.Api.csproj",
+        "projectName": "ASPNetCoreMastersTodoList.Api",
+        "projectPath": "C:\\Masters\\.Net Core\\Homework\\ASPNetCoreMasters\\ASPNetCoreMastersTodoList.Api\\ASPNetCoreMastersTodoList.Api.csproj",
+        "packagesPath": "C:\\Users\\JeromeA\\.nuget\\packages\\",
+        "outputPath": "C:\\Masters\\.Net Core\\Homework\\ASPNetCoreMasters\\ASPNetCoreMastersTodoList.Api\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\JeromeA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\FleetResponse\\FleetResponseServices\\Claims\\FleetResponse.Claims.Proxies.Command\\bin\\Debug": {},
+          "C:\\FleetResponse\\FleetResponseServices\\Claims\\FleetResponse.Claims.Proxies.Query\\bin\\Debug": {},
+          "C:\\FleetResponse\\FleetResponseServices\\Clients\\FleetResponse.Clients.Proxies.Query\\bin\\Debug": {},
+          "C:\\FleetResponse\\FleetResponseServices\\Common\\FleetResponse.Common.Api\\bin\\Debug": {},
+          "C:\\FleetResponse\\FleetResponseServices\\Common\\FleetResponse.Common.TestUtilities\\bin\\Debug": {},
+          "C:\\FleetResponse\\FleetResponseServices\\Shared\\FleetResponse.Shared.Proxies.Command\\bin\\Debug": {},
+          "C:\\FleetResponse\\FleetResponseServices\\Shared\\FleetResponse.Shared.Proxies.Query\\bin\\Debug": {},
+          "C:\\FleetResponse\\FleetResponseServices\\UserAdministration\\FleetResponse.UserAdministration.Proxies.Query\\bin\\Debug": {},
+          "C:\\FleetResponse\\FleetResponseServices\\Vendor\\FleetResponse.Vendors.Proxies.Query\\bin\\Debug": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\JeromeA\\Downloads": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://fleetresponse.pkgs.visualstudio.com/_packaging/FleetResponseNugetSymbols/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Masters\\.Net Core\\Homework\\ASPNetCoreMasters\\ItemService\\ItemService.csproj": {
+                "projectPath": "C:\\Masters\\.Net Core\\Homework\\ASPNetCoreMasters\\ItemService\\ItemService.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Masters\\.Net Core\\Homework\\ASPNetCoreMasters\\ItemService\\ItemService.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Masters\\.Net Core\\Homework\\ASPNetCoreMasters\\ItemService\\ItemService.csproj",
+        "projectName": "ItemService",
+        "projectPath": "C:\\Masters\\.Net Core\\Homework\\ASPNetCoreMasters\\ItemService\\ItemService.csproj",
+        "packagesPath": "C:\\Users\\JeromeA\\.nuget\\packages\\",
+        "outputPath": "C:\\Masters\\.Net Core\\Homework\\ASPNetCoreMasters\\ItemService\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\JeromeA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\FleetResponse\\FleetResponseServices\\Claims\\FleetResponse.Claims.Proxies.Command\\bin\\Debug": {},
+          "C:\\FleetResponse\\FleetResponseServices\\Claims\\FleetResponse.Claims.Proxies.Query\\bin\\Debug": {},
+          "C:\\FleetResponse\\FleetResponseServices\\Clients\\FleetResponse.Clients.Proxies.Query\\bin\\Debug": {},
+          "C:\\FleetResponse\\FleetResponseServices\\Common\\FleetResponse.Common.Api\\bin\\Debug": {},
+          "C:\\FleetResponse\\FleetResponseServices\\Common\\FleetResponse.Common.TestUtilities\\bin\\Debug": {},
+          "C:\\FleetResponse\\FleetResponseServices\\Shared\\FleetResponse.Shared.Proxies.Command\\bin\\Debug": {},
+          "C:\\FleetResponse\\FleetResponseServices\\Shared\\FleetResponse.Shared.Proxies.Query\\bin\\Debug": {},
+          "C:\\FleetResponse\\FleetResponseServices\\UserAdministration\\FleetResponse.UserAdministration.Proxies.Query\\bin\\Debug": {},
+          "C:\\FleetResponse\\FleetResponseServices\\Vendor\\FleetResponse.Vendors.Proxies.Query\\bin\\Debug": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\JeromeA\\Downloads": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://fleetresponse.pkgs.visualstudio.com/_packaging/FleetResponseNugetSymbols/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+C:\Masters\.Net Core\Repository\Session 2\ASPNetCoreMastersTodoList.Api\ItemService\bin\Debug\netcoreapp3.1\ItemService.deps.json
+C:\Masters\.Net Core\Repository\Session 2\ASPNetCoreMastersTodoList.Api\ItemService\bin\Debug\netcoreapp3.1\ItemService.dll
+C:\Masters\.Net Core\Repository\Session 2\ASPNetCoreMastersTodoList.Api\ItemService\bin\Debug\netcoreapp3.1\ItemService.pdb
+C:\Masters\.Net Core\Repository\Session 2\ASPNetCoreMastersTodoList.Api\ItemService\obj\Debug\netcoreapp3.1\ItemService.AssemblyInfoInputs.cache
+C:\Masters\.Net Core\Repository\Session 2\ASPNetCoreMastersTodoList.Api\ItemService\obj\Debug\netcoreapp3.1\ItemService.AssemblyInfo.cs
+C:\Masters\.Net Core\Repository\Session 2\ASPNetCoreMastersTodoList.Api\ItemService\obj\Debug\netcoreapp3.1\ItemService.csproj.CoreCompileInputs.cache
+C:\Masters\.Net Core\Repository\Session 2\ASPNetCoreMastersTodoList.Api\ItemService\obj\Debug\netcoreapp3.1\ItemService.dll
+C:\Masters\.Net Core\Repository\Session 2\ASPNetCoreMastersTodoList.Api\ItemService\obj\Debug\netcoreapp3.1\ItemService.pdb
