@@ -1,22 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ASPNetCoreMastersTodoList.Api.BindingModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Service;
+using Services.DTO;
+using Services.Interfaces;
 
-namespace ASPNetCoreMastersTodoList.Api.Controllers
+namespace ASPNetCoreMastersTodoList.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
     public class ItemsController : ControllerBase
     {
-        [HttpGet()]
-        public  IEnumerable<string> Get(int id)
+        private readonly IItemService _itemService;
+        public ItemsController(IItemService itemService)
         {
-            ItemService itemService = new ItemService();
-            return itemService.GetAll(id);
+            _itemService = itemService;
+        }
+        public int Get(int id)
+        {
+            return id;
+        }
+
+        public void Post(ItemCreateApiModel model)
+        {
+            _itemService.Save(new ItemDto { Item = model.Item });
         }
     }
 }

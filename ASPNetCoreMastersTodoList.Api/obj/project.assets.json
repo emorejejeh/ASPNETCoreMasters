@@ -2,28 +2,46 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "ItemService/1.0.0": {
+      "DomainModels/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "compile": {
-          "bin/placeholder/ItemService.dll": {}
+          "bin/placeholder/DomainModels.dll": {}
         },
         "runtime": {
-          "bin/placeholder/ItemService.dll": {}
+          "bin/placeholder/DomainModels.dll": {}
+        }
+      },
+      "Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "DomainModels": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Services.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "ItemService/1.0.0": {
+    "DomainModels/1.0.0": {
       "type": "project",
-      "path": "../ItemService/ItemService.csproj",
-      "msbuildProject": "../ItemService/ItemService.csproj"
+      "path": "../DomainModels/DomainModels.csproj",
+      "msbuildProject": "../DomainModels/DomainModels.csproj"
+    },
+    "Services/1.0.0": {
+      "type": "project",
+      "path": "../Services/Services.csproj",
+      "msbuildProject": "../Services/Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "ItemService >= 1.0.0"
+      "Services >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -68,8 +86,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Masters\\.Net Core\\Homework\\ASPNetCoreMasters\\ItemService\\ItemService.csproj": {
-              "projectPath": "C:\\Masters\\.Net Core\\Homework\\ASPNetCoreMasters\\ItemService\\ItemService.csproj"
+            "C:\\Masters\\.Net Core\\Homework\\ASPNetCoreMasters\\Services\\Services.csproj": {
+              "projectPath": "C:\\Masters\\.Net Core\\Homework\\ASPNetCoreMasters\\Services\\Services.csproj"
             }
           }
         }
