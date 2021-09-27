@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Repositories;
 using Services.DTO;
 using Services.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ASPNetCoreMastersTodoList.Controllers
@@ -30,10 +31,14 @@ namespace ASPNetCoreMastersTodoList.Controllers
             return Ok(_itemService.GetById(itemId));
         }
 
-        [HttpGet("filter")]
+        [HttpGet("filterBy")]
         public IActionResult GetByFilters([FromQuery] Dictionary<string, string> filters)
         {
-            return null;
+
+            filters.TryGetValue("id", out string id);
+            filters.TryGetValue("item", out string item);
+
+            return Ok(_itemService.GetAllByFilter(new ItemFilterByDto { Id = Convert.ToInt32(id), Item = item }));
         }
 
         [HttpPost()]

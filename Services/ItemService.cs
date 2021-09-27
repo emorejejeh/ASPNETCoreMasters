@@ -25,7 +25,19 @@ namespace Services
 
         public IEnumerable<ItemDto> GetAllByFilter(ItemFilterByDto filters)
         {
-            return null;
+            IEnumerable<ItemDto> response;
+
+            var itemFilterById = filters.Id.HasValue && filters.Id != 0 ? _itemRepository.All().Where(i => i.Id.Equals(filters.Id)) : _itemRepository.All();
+
+            if (filters.Id.HasValue)
+            {
+                var itemFilterByItem = !string.IsNullOrEmpty(filters.Item) ? itemFilterById.Where(i => i.Item.ToLower().Equals(filters.Item.ToLower())) : itemFilterById;
+                response = itemFilterByItem;
+            }
+            else
+                response = !string.IsNullOrEmpty(filters.Item) ? _itemRepository.All().Where(i => i.Item.ToLower().Equals(filters.Item.ToLower())) : _itemRepository.All();
+
+            return response;
         }
 
         public ItemDto GetById(int id)

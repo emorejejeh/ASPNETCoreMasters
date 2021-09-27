@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Services.DTO
+﻿namespace Services.DTO
 {
     public class ItemFilterByDto
     {
-        public Dictionary<string, string> Filter { get; set; }
+        public int? Id { get; set; }
+        public string Item { get; set; }
     }
 }
