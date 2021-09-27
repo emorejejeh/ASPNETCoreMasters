@@ -1,4 +1,5 @@
-﻿using Services.DTO;
+﻿using DomainModels;
+using Services.DTO;
 using Services.Interfaces;
 
 namespace Services
@@ -7,7 +8,7 @@ namespace Services
     {
         public void Save(ItemDto dto)
         {
-
+            ItemModel model = new ItemModel { Item = dto.Item };
         }
     }
 }

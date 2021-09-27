@@ -17,9 +17,13 @@ namespace ASPNetCoreMastersTodoList.Controllers
             return id;
         }
 
-        public void Post(ItemCreateApiModel model)
+        [HttpPost()]
+        public void Post([FromBody] ItemCreateApiModel model)
         {
-            _itemService.Save(new ItemDto { Item = model.Item });
+            if(ModelState.IsValid)
+                _itemService.Save(new ItemDto { Item = model.Item });
+
+
         }
     }
 }
