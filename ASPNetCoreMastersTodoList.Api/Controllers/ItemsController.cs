@@ -29,7 +29,7 @@ namespace ASPNetCoreMastersTodoList.Controllers
             return Ok(_itemService.GetById(itemId));
         }
 
-        [HttpGet("filter")]
+        [HttpGet("filterBy")]
         public IActionResult GetByFilters([FromQuery] Dictionary<string, string> filters)
         {
             return null;
