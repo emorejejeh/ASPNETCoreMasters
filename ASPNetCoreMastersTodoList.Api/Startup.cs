@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DomainModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +34,7 @@ namespace ASPNetCoreMastersTodoList
             services.AddSingleton<IItemRepository, ItemRepository>();
             services.AddTransient<IItemService, ItemService>();
             services.AddSwaggerGen();
+            services.Configure<Authentication>(Configuration.GetSection("Authentication"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
