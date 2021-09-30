@@ -29,6 +29,8 @@ namespace ASPNetCoreMastersTodoList
         {
             services.AddControllers();
             services.AddSingleton<IItemService, ItemService>();
+
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +46,17 @@ namespace ASPNetCoreMastersTodoList
                 app.UseHsts();
             }
 
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -52,11 +65,7 @@ namespace ASPNetCoreMastersTodoList
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action}/{id?}"
-                );
-
+                endpoints.MapControllers();
             });
         }
     }

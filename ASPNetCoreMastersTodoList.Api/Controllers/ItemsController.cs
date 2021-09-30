@@ -2,9 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Services.DTO;
 using Services.Interfaces;
+using System.Collections.Generic;
 
 namespace ASPNetCoreMastersTodoList.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class ItemsController : ControllerBase
     {
         private readonly IItemService _itemService;
@@ -12,18 +15,45 @@ namespace ASPNetCoreMastersTodoList.Controllers
         {
             _itemService = itemService;
         }
-        public int Get(int id)
+
+        [HttpGet()]
+        public IActionResult GetAll()
         {
-            return id;
+            var items = _itemService.GetAll();
+            return Ok(items);
+        }
+
+        [HttpGet("{itemId}")]
+        public IActionResult Get(int itemId)
+        {
+            return Ok(_itemService.GetById(itemId));
+        }
+
+        [HttpGet("filterBy")]
+        public IActionResult GetByFilters([FromQuery] Dictionary<string, string> filters)
+        {
+            return null;
         }
 
         [HttpPost()]
-        public void Post([FromBody] ItemCreateApiModel model)
+        public IActionResult Post([FromBody] ItemCreateApiModel model)
         {
-            if(ModelState.IsValid)
-                _itemService.Save(new ItemDto { Item = model.Item });
+            _itemService.Save(new ItemDto { Item = model.Item });
+            return Ok();
+        }
 
+        [HttpPut("{itemId}")]
+        public IActionResult Put(int itemId)
+        {
+            _itemService.UpdateItem(itemId);
+            return Ok();
+        }
 
+        [HttpDelete("{itemId}")]
+        public IActionResult Delete(int itemId)
+        {
+            _itemService.DeleteItem(itemId);
+            return Ok();
         }
     }
 }
