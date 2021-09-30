@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace ASPNetCoreMastersTodoList.Api
+namespace ASPNetCoreMastersTodoList
 {
     public class Program
     {
