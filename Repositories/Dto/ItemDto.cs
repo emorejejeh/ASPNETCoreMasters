@@ -1,4 +1,4 @@
-﻿namespace Services.DTO
+﻿namespace Repositories
 {
     public class ItemDto
     {

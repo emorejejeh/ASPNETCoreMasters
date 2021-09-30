@@ -1,4 +1,4 @@
-﻿using DomainModels;
+﻿using Repositories;
 using Services.DTO;
 using Services.Interfaces;
 using System.Collections.Generic;
@@ -8,36 +8,51 @@ namespace Services
 {
     public class ItemService : IItemService
     {
-        private readonly IEnumerable<ItemDto> _items;
-
-         
-        public ItemService()
+        private readonly IItemRepository _itemRepository;
+        public ItemService(IItemRepository itemRepository)
         {
-            _items = CreateDto(2);
+            _itemRepository = itemRepository;
         }
-        public void Save(ItemDto dto)
+        public void Add(ItemDto dto)
         {
-            ItemModel model = new ItemModel { Item = dto.Item };
+            _itemRepository.SaveItem(dto);
         }
 
         public IEnumerable<ItemDto> GetAll()
         {
-            return _items;
+            return _itemRepository.All();
+        }
+
+        public IEnumerable<ItemDto> GetAllByFilter(ItemFilterByDto filters)
+        {
+            IEnumerable<ItemDto> response;
+
+            var itemFilterById = filters.Id.HasValue && filters.Id != 0 ? _itemRepository.All().Where(i => i.Id.Equals(filters.Id)) : _itemRepository.All();
+
+            if (filters.Id.HasValue)
+            {
+                var itemFilterByItem = !string.IsNullOrEmpty(filters.Item) ? itemFilterById.Where(i => i.Item.ToLower().Equals(filters.Item.ToLower())) : itemFilterById;
+                response = itemFilterByItem;
+            }
+            else
+                response = !string.IsNullOrEmpty(filters.Item) ? _itemRepository.All().Where(i => i.Item.ToLower().Equals(filters.Item.ToLower())) : _itemRepository.All();
+
+            return response;
         }
 
         public ItemDto GetById(int id)
         {
-            return _items.FirstOrDefault(x => x.Id.Equals(id));
+            return _itemRepository.All().FirstOrDefault(x => x.Id.Equals(id));
         }
 
-        public void UpdateItem(int id)
+        public void Update(ItemDto dto)
         {
-
+            _itemRepository.UpdateItem(dto);
         }
 
-        public void DeleteItem(int id)
+        public void Delete(int id)
         {
-
+            _itemRepository.Delete(id);
         }
 
 

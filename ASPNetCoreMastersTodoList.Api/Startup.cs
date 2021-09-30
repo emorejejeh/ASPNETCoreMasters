@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Repositories;
 using Services;
 using Services.Interfaces;
 
@@ -28,8 +29,9 @@ namespace ASPNetCoreMastersTodoList
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<IItemService, ItemService>();
-
+            services.AddSingleton<DataContext>();
+            services.AddSingleton<IItemRepository, ItemRepository>();
+            services.AddTransient<IItemService, ItemService>();
             services.AddSwaggerGen();
         }
 

@@ -1,7 +1,9 @@
 ﻿using ASPNetCoreMastersTodoList.Api.BindingModels;
 using Microsoft.AspNetCore.Mvc;
+using Repositories;
 using Services.DTO;
 using Services.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ASPNetCoreMastersTodoList.Controllers
@@ -32,27 +34,31 @@ namespace ASPNetCoreMastersTodoList.Controllers
         [HttpGet("filterBy")]
         public IActionResult GetByFilters([FromQuery] Dictionary<string, string> filters)
         {
-            return null;
+
+            filters.TryGetValue("id", out string id);
+            filters.TryGetValue("item", out string item);
+
+            return Ok(_itemService.GetAllByFilter(new ItemFilterByDto { Id = Convert.ToInt32(id), Item = item }));
         }
 
         [HttpPost()]
         public IActionResult Post([FromBody] ItemCreateApiModel model)
         {
-            _itemService.Save(new ItemDto { Item = model.Item });
+            _itemService.Add(new ItemDto { Item = model.Item, Id = model.Id });
             return Ok();
         }
 
-        [HttpPut("{itemId}")]
-        public IActionResult Put(int itemId)
+        [HttpPut()]
+        public IActionResult Put(ItemDto item)
         {
-            _itemService.UpdateItem(itemId);
+            _itemService.Update(item);
             return Ok();
         }
 
         [HttpDelete("{itemId}")]
         public IActionResult Delete(int itemId)
         {
-            _itemService.DeleteItem(itemId);
+            _itemService.Delete(itemId);
             return Ok();
         }
     }
