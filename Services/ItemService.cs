@@ -1,4 +1,5 @@
-﻿using Services.DTO;
+﻿using DomainModels;
+using Services.DTO;
 using Services.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Services
         }
         public void Save(ItemDto dto)
         {
-
+            ItemModel model = new ItemModel { Item = dto.Item };
         }
 
         public IEnumerable<ItemDto> GetAll()
