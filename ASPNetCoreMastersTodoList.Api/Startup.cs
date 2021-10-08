@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ASPNetCoreMastersTodoList.Api.Filters;
 using DomainModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +36,11 @@ namespace ASPNetCoreMastersTodoList
             services.AddTransient<IItemService, ItemService>();
             services.AddSwaggerGen();
             services.Configure<Authentication>(Configuration.GetSection("Authentication"));
+
+            services.AddControllers(options =>
+            {
+                options.Filters.Add(new GlobalLogRequestTimeFilterAttribute());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
