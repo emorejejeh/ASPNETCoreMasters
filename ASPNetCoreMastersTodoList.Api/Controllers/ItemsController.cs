@@ -1,15 +1,19 @@
 ﻿using ASPNetCoreMastersTodoList.Api.BindingModels;
+using ASPNetCoreMastersTodoList.Api.Filters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Repositories;
 using Services.DTO;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Net;
 
 namespace ASPNetCoreMastersTodoList.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ItemsController : ControllerBase
     {
         private readonly IItemService _itemService;
@@ -26,8 +30,13 @@ namespace ASPNetCoreMastersTodoList.Controllers
         }
 
         [HttpGet("{itemId}")]
+        [ItemValidationFilterAttribute]
         public IActionResult Get(int itemId)
         {
+            if (Response.StatusCode.Equals((int)HttpStatusCode.NotFound))
+            {
+                return NotFound();
+            }
             return Ok(_itemService.GetById(itemId));
         }
 
@@ -49,15 +58,25 @@ namespace ASPNetCoreMastersTodoList.Controllers
         }
 
         [HttpPut()]
+        [ItemValidationFilterAttribute]
         public IActionResult Put(ItemDto item)
         {
+            if (Response.StatusCode.Equals((int)HttpStatusCode.NotFound))
+            {
+                return NotFound();
+            }
             _itemService.Update(item);
             return Ok();
         }
 
         [HttpDelete("{itemId}")]
+        [ItemValidationFilterAttribute]
         public IActionResult Delete(int itemId)
         {
+            if (Response.StatusCode.Equals((int)HttpStatusCode.NotFound))
+            {
+                return NotFound();
+            }
             _itemService.Delete(itemId);
             return Ok();
         }
