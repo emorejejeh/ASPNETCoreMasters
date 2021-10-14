@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using ASPNetCoreMastersTodoList.Api.BindingModels;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Repositories;
 using Services;
 using Services.Interfaces;
@@ -22,7 +23,7 @@ namespace ASPNetCoreMastersTodoList.Api.Filters
             int? itemId = 0;
             if (context.HttpContext.Request.Method.Equals("PUT"))
             {
-                var itemDto = context.ActionArguments["item"] as ItemDto;
+                var itemDto = context.ActionArguments["item"] as ItemCreateApiModel;
                 itemId = itemDto.Id;
             }
             else

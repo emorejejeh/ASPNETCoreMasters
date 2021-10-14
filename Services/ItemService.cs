@@ -1,6 +1,7 @@
 ﻿using Repositories;
 using Services.DTO;
 using Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -64,7 +65,9 @@ namespace Services
                 response.Add(new ItemDto
                 {
                     Id = x,
-                    Item = "Item" + x.ToString()
+                    Item = "Item" + x.ToString(),
+                    DateCreated = DateTime.UtcNow,
+                    CreatedBy = "test" + x.ToString() + "@example.com"
                 });
             }
 

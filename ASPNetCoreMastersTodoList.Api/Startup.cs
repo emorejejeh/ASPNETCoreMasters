@@ -1,8 +1,10 @@
 using System.Text;
 using ASPNetCoreMastersTodoList.Api;
+using ASPNetCoreMastersTodoList.Api.Authorization;
 using ASPNetCoreMastersTodoList.Api.Filters;
 using DomainModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -60,6 +62,12 @@ namespace ASPNetCoreMastersTodoList
             services.AddSingleton<DataContext>();
             services.AddSingleton<IItemRepository, ItemRepository>();
             services.AddTransient<IItemService, ItemService>();
+            services.AddAuthorization(options => {
+                options.AddPolicy("CanEditItems",
+                    policy => policy.Requirements.Add(new CanEditItemsRequirement()));
+            });
+
+            services.AddScoped<IAuthorizationHandler, CanEditItemsHandler>();
             services.AddSwaggerGen(swagger => {
                 //This is to generate the Default UI of Swagger Documentation    
                 swagger.SwaggerDoc("v1", new OpenApiInfo
@@ -100,7 +108,8 @@ namespace ASPNetCoreMastersTodoList
                 options.Filters.Add(new GlobalLogRequestTimeFilterAttribute());
             });
 
-           
+            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
