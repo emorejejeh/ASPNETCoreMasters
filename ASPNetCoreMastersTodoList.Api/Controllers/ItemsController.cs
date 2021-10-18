@@ -15,6 +15,7 @@ namespace ASPNetCoreMastersTodoList.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ItemValidationFilterAttribute]
     [Authorize]
     public class ItemsController : ControllerBase
     {
@@ -39,7 +40,6 @@ namespace ASPNetCoreMastersTodoList.Controllers
         }
 
         [HttpGet("{itemId}")]
-        [ItemValidationFilterAttribute]
         public IActionResult Get(int itemId)
         {
             _logger.LogInformation("Getting item({itemId}) - {RequestTime}",itemId, DateTime.Now);
@@ -69,7 +69,6 @@ namespace ASPNetCoreMastersTodoList.Controllers
         }
 
         [HttpPut()]
-        [ItemValidationFilterAttribute]
         public async Task<IActionResult> Edit(ItemCreateApiModel item)
         {
             _logger.LogInformation("Editing item - {RequestTime}", DateTime.Now);
@@ -89,7 +88,6 @@ namespace ASPNetCoreMastersTodoList.Controllers
         }
 
         [HttpDelete("{itemId}")]
-        [ItemValidationFilterAttribute]
         public IActionResult Delete(int itemId)
         {
             _logger.LogInformation("Deleting item({itemId}) - {RequestTime}", itemId, DateTime.Now);

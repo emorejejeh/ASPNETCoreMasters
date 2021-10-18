@@ -7,18 +7,21 @@ using System.Threading.Tasks;
 
 namespace ASPNetCoreMastersTodoList.Api.Filters
 {
-    public class GlobalLogRequestTimeFilterAttribute : Attribute, IActionFilter
+    public class GlobalLogRequestTimeFilterAttribute : Attribute, IResourceFilter
     {
         readonly Stopwatch _stopwatch = new Stopwatch();
-        public void OnActionExecuted(ActionExecutedContext context)
+
+        public void OnResourceExecuted(ResourceExecutedContext context)
         {
             _stopwatch.Stop();
-            Console.WriteLine(context.HttpContext.Request.Path + " - Elapse Time: " + _stopwatch.ElapsedMilliseconds);
+            var stopWatch = context.HttpContext.Items["stopwatch"] as Stopwatch;
+            Console.WriteLine(context.HttpContext.Request.Path + " - Elapse Time: " + stopWatch.ElapsedMilliseconds);
         }
 
-        public void OnActionExecuting(ActionExecutingContext context)
+        public void OnResourceExecuting(ResourceExecutingContext context)
         {
             _stopwatch.Start();
+            context.HttpContext.Items["stopwatch"] = _stopwatch;
         }
     }
 }
