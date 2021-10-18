@@ -14,14 +14,14 @@ namespace ASPNetCoreMastersTodoList.Api.Filters
         public void OnResourceExecuted(ResourceExecutedContext context)
         {
             _stopwatch.Stop();
-            var elapseTime = context.HttpContext.Items["time"];
-            Console.WriteLine(context.HttpContext.Request.Path + " - Elapse Time: " + elapseTime);
+            var stopWatch = context.HttpContext.Items["stopwatch"] as Stopwatch;
+            Console.WriteLine(context.HttpContext.Request.Path + " - Elapse Time: " + stopWatch.ElapsedMilliseconds);
         }
 
         public void OnResourceExecuting(ResourceExecutingContext context)
         {
             _stopwatch.Start();
-            context.HttpContext.Items["time"] = _stopwatch.ElapsedMilliseconds;
+            context.HttpContext.Items["stopwatch"] = _stopwatch;
         }
     }
 }
