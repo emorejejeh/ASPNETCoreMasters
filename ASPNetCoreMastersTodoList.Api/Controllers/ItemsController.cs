@@ -14,6 +14,7 @@ namespace ASPNetCoreMastersTodoList.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ItemValidationFilterAttribute]
     [Authorize]
     public class ItemsController : ControllerBase
     {
@@ -33,7 +34,6 @@ namespace ASPNetCoreMastersTodoList.Controllers
         }
 
         [HttpGet("{itemId}")]
-        [ItemValidationFilterAttribute]
         public IActionResult Get(int itemId)
         {
             if (Response.StatusCode.Equals((int)HttpStatusCode.NotFound))
@@ -61,8 +61,7 @@ namespace ASPNetCoreMastersTodoList.Controllers
         }
 
         [HttpPut()]
-        [ItemValidationFilterAttribute]
-        public async Task<IActionResult> Edit(ItemCreateApiModel item)
+        public async Task<IActionResult> Put(ItemDto item)
         {
             if (Response.StatusCode.Equals((int)HttpStatusCode.NotFound))
             {
@@ -80,7 +79,6 @@ namespace ASPNetCoreMastersTodoList.Controllers
         }
 
         [HttpDelete("{itemId}")]
-        [ItemValidationFilterAttribute]
         public IActionResult Delete(int itemId)
         {
             if (Response.StatusCode.Equals((int)HttpStatusCode.NotFound))
