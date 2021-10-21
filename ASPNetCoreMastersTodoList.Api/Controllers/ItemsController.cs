@@ -2,6 +2,7 @@
 using ASPNetCoreMastersTodoList.Api.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Repositories;
 using Services.DTO;
 using Services.Interfaces;
@@ -20,15 +21,20 @@ namespace ASPNetCoreMastersTodoList.Controllers
     {
         private readonly IItemService _itemService;
         private readonly IAuthorizationService _authService;
-        public ItemsController(IItemService itemService, IAuthorizationService authService)
+        private readonly ILogger<ItemsController> _logger;
+        public ItemsController(IItemService itemService, 
+                               IAuthorizationService authService,
+                               ILogger<ItemsController> logger)
         {
             _itemService = itemService;
             _authService = authService;
+            _logger = logger;
         }
 
         [HttpGet()]
         public IActionResult GetAll()
         {
+            _logger.LogInformation("Getting all items - {RequestTime}", DateTime.Now);
             var items = _itemService.GetAll();
             return Ok(items);
         }
@@ -36,6 +42,7 @@ namespace ASPNetCoreMastersTodoList.Controllers
         [HttpGet("{itemId}")]
         public IActionResult Get(int itemId)
         {
+            _logger.LogInformation("Getting item({itemId}) - {RequestTime}",itemId, DateTime.Now);
             if (Response.StatusCode.Equals((int)HttpStatusCode.NotFound))
             {
                 return NotFound();
@@ -46,7 +53,7 @@ namespace ASPNetCoreMastersTodoList.Controllers
         [HttpGet("filterBy")]
         public IActionResult GetByFilters([FromQuery] Dictionary<string, string> filters)
         {
-
+            _logger.LogInformation("Getting item by filter - {RequestTime}", DateTime.Now);
             filters.TryGetValue("id", out string id);
             filters.TryGetValue("item", out string item);
 
@@ -56,13 +63,15 @@ namespace ASPNetCoreMastersTodoList.Controllers
         [HttpPost()]
         public IActionResult Save([FromBody] ItemCreateApiModel model)
         {
+            _logger.LogInformation("Saving item - {RequestTime}", DateTime.Now);
             _itemService.Add(new ItemDto { Item = model.Item, Id = model.Id, CreatedBy = User.Identity.Name, DateCreated = DateTime.UtcNow });
             return Ok();
         }
 
         [HttpPut()]
-        public async Task<IActionResult> Put(ItemDto item)
+        public async Task<IActionResult> Edit(ItemCreateApiModel item)
         {
+            _logger.LogInformation("Editing item - {RequestTime}", DateTime.Now);
             if (Response.StatusCode.Equals((int)HttpStatusCode.NotFound))
             {
                 return NotFound();
@@ -81,6 +90,7 @@ namespace ASPNetCoreMastersTodoList.Controllers
         [HttpDelete("{itemId}")]
         public IActionResult Delete(int itemId)
         {
+            _logger.LogInformation("Deleting item({itemId}) - {RequestTime}", itemId, DateTime.Now);
             if (Response.StatusCode.Equals((int)HttpStatusCode.NotFound))
             {
                 return NotFound();

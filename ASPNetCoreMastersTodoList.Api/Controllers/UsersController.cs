@@ -3,6 +3,7 @@ using DomainModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -21,19 +22,23 @@ namespace ASPNetCoreMastersTodoList.Api.Controllers
         private readonly Authentication _authentication;
         private readonly JwtOptions _jwtOptions;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly ILogger<UsersController> _logger;
 
         public UsersController(IOptions<Authentication> authentication,
                                IOptions<JwtOptions> jwtOptions,
-                               UserManager<IdentityUser> userManager)
+                               UserManager<IdentityUser> userManager,
+                                ILogger<UsersController> logger)
         {
             _authentication = authentication.Value;
             _userManager = userManager;
             _jwtOptions = jwtOptions.Value;
+            _logger = logger;
         }
 
         [HttpPost("[action]")]
         public async Task<IActionResult> Register(RegisterBindingModel model)
         {
+            _logger.LogInformation("Registering User - {RequestTime}", DateTime.Now);
             var user = new IdentityUser
             {
                 Email = model.Email,
@@ -61,6 +66,7 @@ namespace ASPNetCoreMastersTodoList.Api.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> Confirm(ConfirmBindingModel model)
         {
+            _logger.LogInformation("Confirming User - {RequestTime}", DateTime.Now);
             var user = await _userManager.FindByEmailAsync(model.Email);
             var code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(model.Code));
 
@@ -81,6 +87,7 @@ namespace ASPNetCoreMastersTodoList.Api.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> Login(LoginBindingModel model)
         {
+            _logger.LogInformation("Logging in User - {RequestTime}", DateTime.Now);
             IActionResult actionResult;
 
             var user = await _userManager.FindByEmailAsync(model.Email);
@@ -111,6 +118,7 @@ namespace ASPNetCoreMastersTodoList.Api.Controllers
 
         private string GenerateTokenAsync(IdentityUser user)
         {
+            _logger.LogInformation("Generating Token - {RequestTime}", DateTime.Now);
             IList<Claim> userClaims = new List<Claim>
             {
                 new Claim("Username", user.UserName),
